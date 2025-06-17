@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/chat_app
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+application:
+  security:
+    jwt:
+      secret-key: 25707433c90b673fa64f33770c98dc79fd789ab6183b17c0e458821362df94dcbefb330653b4195a37c2af21f852ed7ac86e5e5cf27f92d8fbcc8222b4a3d26339dddc3f5cf91246caa757ec1c80902b5fb620f80978425416f9801aa24a7393e0f4c35d1aa85312f4bfaee348705a0d3db4fc2352f8e6b3155d176605aeac0b55a8cd66866fa9b87b469c7c0003566ad971ff580b66cb66b25310326e2544a8594ce41ba5c1984ec31dc6a7a3ecfb1e8622c95caa600bc256403557f89e61f8f8b88506f3aaaeb038fc3a7c50378bd8b27dd5e447f578a7bd5e6dff23440e72e5a8f0ab1acff4c127d9eb9a9678fbec31d12675acb19b08b8fbecbf139c3199
+      expiration: 8640000
+  file:
+    uploads:
+      photos-output-path: ./uploads

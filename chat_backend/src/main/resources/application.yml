@@ -1,0 +1,21 @@
+server:
+  servlet:
+    context-path: /api/v1/
+
+spring:
+  application:
+    name: chat
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 4MB
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+
+springdoc:
+  default-produces-media-type: application/json
