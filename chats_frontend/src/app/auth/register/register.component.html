@@ -1,0 +1,66 @@
+
+<div class="container-fluid justify-content-center d-flex align-items-center vh-100">
+    <div class="wrapper">
+        <div class="title"><span>Register Form</span></div>
+        <form #form="ngForm" action="#" needs-validation>
+            <div class="row mt-2 mb-4">
+                <i class="fa fa-user"><span class="text-danger"></span></i>
+                <input type="text" class="form-control" #fnamefirst="ngModel" placeholder="First Name" 
+                [(ngModel)]="user.firstname" name="firstname" required minlength="2"/>
+
+                
+                <div class="text-danger">
+                <!-- <div class="text-danger" *ngIf="!user.firstname"> -->
+                    @if(!fnamefirst.valid && fnamefirst.touched && fnamefirst.dirty) {
+                    <span>First Name is required</span>
+                    }
+                    <span *ngIf="fnamefirst.errors?.['minlength']">Must have at least 2 characters</span>
+                </div>
+                
+            </div>
+            <div class="row mb-4">
+                <i class="fa fa-user"></i>
+                <input type="text" class="form-control" #fnamelast="ngModel" placeholder="Last Name"
+                [(ngModel)]="user.lastname" name="lastname" minlength="2" required />
+
+                <div class="text-danger">
+                    <span *ngIf="fnamelast.errors?.['required'] && fnamelast.touched && fnamelast.dirty">Last Name is required</span>
+                    <span *ngIf="fnamelast.errors?.['minlength'] && fnamelast.touched && fnamelast.dirty">Must have at least 2 characters</span>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <i class="fa fa-envelope"></i>
+                <input type="email" class="form-control" #femail="ngModel" placeholder="Email" 
+                [(ngModel)]="user.email" name="email" required />
+
+                <div class="text-danger">
+                    <span *ngIf="femail.errors?.['required'] && femail.touched && femail.dirty">Email is required</span>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <i class="fa fa-lock"></i>
+                <input type="password" #fpassword="ngModel" placeholder="Password"
+                [(ngModel)]="user.password" name="password" minlength="6" required />
+
+                <div class="text-danger">
+                    <span *ngIf="fpassword.errors?.['required'] && fpassword.touched && fpassword.dirty">Password is required</span>
+                    <span *ngIf="fpassword.errors?.['minlength'] && fpassword.touched && fpassword.dirty">Must have at least 6 characters</span>
+                </div>
+            </div>
+            <!-- <div class="pass"><a href="#">Forgot password?</a></div> -->
+            <div class="row">
+                <input class="register-submit-btn" [disabled]="form.invalid" [ngClass]="{'is-invalid': form.invalid}" 
+                (click)="register()" type="submit" value="Register" />
+            </div>
+            <!-- <div class="text-danger">
+                <span *ngIf="form.invalid && form.submitted" class="global-error-message">
+                    Please fill out the form correctly.
+                </span>
+            </div> -->
+            <div class="signup-link">
+                Already registered ? 
+                <a routerLink="/login">Login here</a>
+            </div>
+        </form>
+    </div>
+</div>

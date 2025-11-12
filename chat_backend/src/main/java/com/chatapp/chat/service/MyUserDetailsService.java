@@ -14,10 +14,16 @@ public class MyUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
+    /**
+     * We have implement UserDetails in class Users and getUsername method return email
+     * @param email
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        return userRepository.findByEmail(username).orElseThrow(
+        return userRepository.findByEmail(email).orElseThrow(
                 () -> new UsernameNotFoundException("User not found exception")
         );
     }

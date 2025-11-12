@@ -1,0 +1,20 @@
+<div class="row">   
+    <div class="col-12 text-center">
+        <app-tabs [tabs]="['Messages recu', 'Messages envoyés', 'Contacts', 'Settings']" (selectedTab)="onTabClick($event)"></app-tabs>
+    </div>
+</div>
+
+<div class="row pt-2">
+    @if (currentTab === 'Messages recu') {
+
+    }
+    @else if (currentTab === 'Messages envoyés') {
+
+    }
+    @else if (currentTab === 'Contacts') {
+
+    }
+    @else if (currentTab === 'Settings') {
+
+    }
+</div>

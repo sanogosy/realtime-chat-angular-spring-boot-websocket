@@ -15,13 +15,15 @@ public class RegistrationRequest {
 
     @NotEmpty(message = "Firstname is mandatory")
     @NotNull(message = "Firstname is mandatory")
+    @Size(min = 2, message = "Firstname should be 2 characters long minimum")
     private String firstname;
 
     @NotEmpty(message = "Lastname is mandatory")
     @NotNull(message = "Lastname is mandatory")
+    @Size(min = 2, message = "Lastname should be 2 characters long minimum")
     private String lastname;
 
-    @Email(message = "Email is mal formated")
+    @Email(message = "Email is malformed")
     @NotEmpty(message = "Email is mandatory")
     @NotNull(message = "Email is mandatory")
     private String email;

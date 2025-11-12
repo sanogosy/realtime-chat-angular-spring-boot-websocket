@@ -24,6 +24,9 @@ public class Messages {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    @OneToMany(mappedBy = "parentmessage", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Messages> childmessages;
+
     @NotNull
     @Column(columnDefinition = "boolean default false")
     private boolean read;
@@ -31,9 +34,6 @@ public class Messages {
     @NotNull
     @Column(columnDefinition = "boolean default false")
     private boolean deleted;
-
-    @OneToMany(mappedBy = "parentmessage", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Messages> childmessages;
 
     @ManyToOne
     @JoinColumn(name = "parentmessage_id")

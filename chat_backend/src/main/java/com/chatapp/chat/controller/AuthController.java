@@ -21,6 +21,11 @@ public class AuthController {
 
     private final AuthService authService;
 
+    @PostMapping(value = "/authenticate")
+    public ResponseEntity<AuthenticationResponse>authenticate(@RequestBody @Valid AuthenticationRequest authenticationRequest){
+        return ResponseEntity.ok(authService.authenticate(authenticationRequest));
+    }
+
     @PostMapping(value = "/register")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<?> register(@RequestBody @Valid RegistrationRequest request) {

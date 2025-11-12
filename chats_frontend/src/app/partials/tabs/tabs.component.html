@@ -1,0 +1,7 @@
+<div class="btn-group">
+    @for (tab of tabs; track $index) {
+    <button type="button" class="btn" [ngClass]="currentTab == tab ? 'btn-primary' : 'btn-secondary'" (click)="onClickTab(tab)">
+        {{ tab }}
+    </button>
+    }
+</div>

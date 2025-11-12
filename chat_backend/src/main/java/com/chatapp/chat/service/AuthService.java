@@ -51,8 +51,13 @@ public class AuthService {
         );
         var claims = new HashMap<String, Object>();
         var user = (Users)auth.getPrincipal();
-        claims.put("username", user.getUsername());
+        var email = user.getUsername();
+        claims.put("username", user.getUsername()); // get email if found
         var jwtToken = jwtService.generateToken(claims, user);
-        return AuthenticationResponse.builder().token(jwtToken).build();
+
+        return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .email(email)
+                .build();
     }
 }
