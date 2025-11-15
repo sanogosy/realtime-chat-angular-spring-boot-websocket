@@ -1,20 +1,23 @@
 package com.chatapp.chat.entity;
 
+import com.chatapp.chat.common.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.w3c.dom.Text;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "messages")
-public class Messages {
+public class Messages extends BaseEntity {
 
     @Id
     @GeneratedValue

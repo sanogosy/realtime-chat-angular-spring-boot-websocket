@@ -4,10 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -18,15 +15,16 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+//@Builder
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
 public class BaseEntity {
 
-    @Id
-    @GeneratedValue
-    private Integer id;
+//    @Id
+//    @GeneratedValue
+//    private Integer id;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

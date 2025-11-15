@@ -1,0 +1,16 @@
+<form action="#">   
+    <div class="card">
+        <h5 class="card-title">Compose Message</h5>
+        <h6 class="card-subtitle mb-2 text-muted">To: {{ email }}</h6>
+        <div class="card-body">
+            <div class="mb-3">
+                <label for="messageContent" class="form-label">Message</label>
+                <textarea class="form-control" id="messageContent" rows="5"
+                 #messageBody></textarea>
+            </div>        
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary" (click)="onClickSend(messageBody.value)">Send</button>
+        </div>
+    </div>
+</form>

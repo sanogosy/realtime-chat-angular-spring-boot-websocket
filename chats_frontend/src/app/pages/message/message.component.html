@@ -5,16 +5,49 @@
 </div>
 
 <div class="row pt-2">
+    <div class="col-4 offset-1">
     @if (currentTab === 'Messages recu') {
+        
+        @for (message of messages; track $index) {
+            <div class="card mb-2" *ngIf="message.receiverId === currentUser.id">
+                <div class="card-body">
+                    <h5 class="card-title">De: {{ message.senderfirstname }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Envoyé le: {{ message.sentat | date:'short' }}</h6>
+                    <p class="card-text">{{ message.sendcontent }}</p>  
+                </div>
+            </div>
+        }
 
     }
     @else if (currentTab === 'Messages envoyés') {
-
+        @for (message of messages; track $index) {
+            <div class="card mb-2" *ngIf="message.receiverId !== currentUser.id">
+                <div class="card-body">
+                    <h5 class="card-title">To: {{ message.senderfirstname }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Envoyé le: {{ message.sentat | date:'short' }}</h6>
+                    <p class="card-text">{{ message.sendcontent }}</p>  
+                </div>
+            </div>
+        }
     }
     @else if (currentTab === 'Contacts') {
-
+        @for (user of users; track $index) {
+            <div class="card mb-2" *ngIf="user.email !== currentUser.email">
+                <div class="card-body">
+                    <h5 class="card-title">First Name: {{ user.firstname }}</h5>
+                    <h5 class="card-title">Last Name: {{ user.lastname }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Email: {{ user.email }}</h6>
+                    <button class="btn btn-primary" (click)="composeMessage(user)">Send Message</button>
+                </div>
+            </div>
+        }
     }
     @else if (currentTab === 'Settings') {
 
     }
+    </div>
+
+    <div class="col-5" *ngIf="sendmessage">
+        <app-app-message-compose [email]="useremail" (messageContent)="sendContent($event)"></app-app-message-compose>
+    </div>
 </div>

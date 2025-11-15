@@ -16,7 +16,10 @@ public interface MessageRepository extends JpaRepository<Messages, Integer> {
             value = "SELECT COALESCE(ms.content, mr.content) AS sendcontent, " +
                     "ms.parentmessage_id AS parentmessageId, " +
                     "COALESCE(ms.id, mr.sender_id) AS messagesendId, " +
-                    "COALESCE(ms.receiver_id, mr.receiver_id) AS receiverId " +
+                    "COALESCE(ms.receiver_id, mr.receiver_id) AS receiverId, " +
+                    "COALESCE(ms.created_date, mr.created_date) AS sentat, " +
+                    "u.firstname AS senderfirstname, " +
+                    "u.lastname AS senderlastname " +
                     "FROM users u " +
                     "LEFT JOIN messages ms " +
                     "ON u.id = ms.sender_id " +

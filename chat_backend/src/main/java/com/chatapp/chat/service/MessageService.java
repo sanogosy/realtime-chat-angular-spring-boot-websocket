@@ -7,9 +7,12 @@ import com.chatapp.chat.repository.MessageRepository;
 import com.chatapp.chat.repository.UserRepository;
 import com.chatapp.chat.utils.MessageRequest;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +20,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class MessageService {
 
+    private static final Logger logger = LoggerFactory.getLogger(MessageService.class);
     private final MessageRepository messageRepository;
     private final UserRepository userRepository;
 
@@ -33,11 +37,16 @@ public class MessageService {
         //check if the message file exists
 //        Optional<Messages> msg = messageRepository.findBySenderAndReceiver(userSender.getId(), userReceiver.getId());
 
+        LocalDateTime localDateTime = LocalDateTime.now();
+
         //store message
         Messages message = Messages.builder()
                 .sender(userSender)
                 .receiver(userReceiver)
                 .content(messageRequest.getContent())
+                .lastModifiedDate(localDateTime)
+                .createdBy(userSender.getLastname() + " " + userSender.getFirstname())
+                .createdDate(localDateTime)
                 .build();
 
         messageRepository.save(message);

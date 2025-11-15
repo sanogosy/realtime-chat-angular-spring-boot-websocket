@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../interface/user';
 import { Observable } from 'rxjs';
 import { AuthenticationRequest } from '../interface/authentication-request';
-import { apiUrlRegister, apiUrlLogin, apiUrlUserByEmail } from '../constants';
+import { apiUrlRegister, apiUrlLogin, apiUrlUserByEmail, apiUrlGetAllUsers } from '../constants';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +29,10 @@ export class UserService {
         params: { email: email.toString() }
       });
 
+  }
+
+  getAllUsers(): Observable<any> {
+      return this.httpClient.get(apiUrlGetAllUsers);
   }
 
 }
